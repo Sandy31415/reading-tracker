@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
 <h1>Hello World Wide Web!</h1>
+<h2>
+  How many minutes did you spend reading?
+  </h2>
+<input type="text" id="minutes" placeholder="enter minutes">
+<button onclick="getMinutes()">Log Reading</button>
+
+  <h2>Today's reading: <span id="today">0 mins</span></h2>
+<h2>This week's reading: <span id="week">0 mins</span></h2>
+<h2>Your streak: <span id="streak">0 days</span></h2>
+
+  
+  <script>
+  const today = new Date().toDateString();
+   const input = document.getElementById("minutes");
+  const value = input.value;
+    localStorage.setItem("key", JSON.stringify(data)); // save
+const data = JSON.parse(localStorage.getItem("key"))
+document.getElementById("some-id").textContent = "new text";
+  
+    function getMinutes(){
+      const mins= parseInt(document.getElementByID("minutes").value);
+      if isNaN(mins) || mins <=0 return alert("enter a valid number");
+       const log = JSON.parse(localStorage.getItem("readingLog")) || {};
+       const today = new Date().toDateString();
+  log[today] = (log[today] || 0) + mins;
+      localStorage.setItem("readingLog", JSON.stringify(log));
+      updateDisplay(log);  
+    }
+    
+    function updateDisplay (){
+      const today= new Date().toDateString();
+      const todayMins = log[today] || 0;
+      let weektotal= 0;
+      for (let i=0; i<7; i++){
+        const day= new Date();
+        day.setDate=day.getDate()-i
+        weektotal= weektotal + log[day.toDateString()] || 0;
+        
+      }
+      
+      let streak=0;
+      let checking= new Date();
+      while (log[checking.toDateString()]){
+        streak= streak + 1; 
+       checking.setDate(checking.getDate() - 1);
+      }
+       document.getElementById("today").textContent = todayMins + " mins";
+  document.getElementById("week").textContent = weekTotal + " mins";
+  document.getElementById("streak").textContent = streak + " days 🔥";
+    }
+    const savedLog = JSON.parse(localStorage.getItem("readingLog")) || {};
+updateDisplay(savedLog);
+  </script>
+</html>
