@@ -1,59 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  
+  <style>
+body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #081B50;
+  padding: 2vw;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
 
-<h1>Hello World Wide Web!</h1>
+  background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px),
+    radial-gradient(white, rgba(255,255,255,.1) .5px, transparent 10px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) .5px, transparent 5px);
+
+  background-size:
+    550px 550px,
+    350px 350px,
+    250px 250px,
+    150px 150px;
+
+  background-position:
+    0 0,
+    40px 60px,
+    130px 270px,
+    70px 100px;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  animation: twinkle 4s infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::after {
+  animation-duration: 7s;
+  opacity: 0.6;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+    
+    .sky {
+     
+    position: relative;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+      
+}
+    .star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 2px;
+    border-radius: 885px;
+    background: linear-gradient(-45deg,
+            #eef0f5, rgba(0, 0, 255, 0));
+
+    -webkit-filter: drop-shadow(0 0 6px #eef1f8);
+    filter: drop-shadow(0 0 6px #d7dff0);
+    -webkit-animation: tail 3000ms ease-in-out infinite,
+        shooting 3000ms ease-in-out infinite;
+    animation: tail 6000ms ease-in-out infinite,
+        shooting 6000ms ease-in-out infinite;
+}
+    
+    .star::before,
+.star::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(-45deg,
+            rgba(0, 0, 255, 0),
+            #eaeef8,
+            rgba(0, 0, 255, 0));
+    -webkit-transform: translateX(50%) rotateZ(45deg);
+    transform: translateX(50%) rotateZ(45deg);
+    border-radius: 100%;
+    -webkit-animation: shining 3000ms ease-in-out infinite;
+    animation: shining 3000ms ease-in-out infinite;
+}
+
+.star::after {
+    -webkit-transform: translateX(50%) rotateZ(-45deg);
+    transform: translateX(50%) rotateZ(-45deg);
+}
+  
+    .star:nth-child(1) {
+    top: calc(50% - -105px);
+    left: calc(50% - 43px);
+    -webkit-animation-delay: 5000ms;
+    animation-delay: 5000ms;
+}
+
+.star:nth-child(1)::before,
+.star:nth-child(1)::after {
+    -webkit-animation-delay: 5000ms;
+    animation-delay: 5000ms;
+}
+
+
+
+    @keyframes tail {
+    0%   { width: 0; }
+    10%  { width: 100px; }
+    60%  { width: 0; }
+    100% { width: 0; }
+}
+    
+@keyframes shining {
+       0%   { width: 0; }
+    20%  { width: 30px; }
+    60%  { width: 0; }
+    100% { width: 0; }
+
+}
+
+     
+  
+   
+
+     
+@keyframes shooting {
+     0%   { transform: translateX(0); }
+    60%  { transform: translateX(270px); }
+    100% { transform: translateX(270px); } 
+}
+    
+    
+    h1{
+      font-family: "Hahmlet";
+      margin-top: 60px;
+      color: #BAA3FF;
+       font-size: clamp(1.8rem, 4vw, 4rem);
+    }
+    
+    .top-card{
+      z-index: 1; 
+      background-color: #3B96B1;
+      padding: 30px; 
+      margin:50px;
+        padding: clamp(20px, 4vw, 60px);
+
+  margin: clamp(20px, 4vw, 60px);
+
+  /* Responsive width */
+  width: 80%;
+  max-width: 900px;
+
+  border-radius: 10px;
+    }
+    
+    h2{
+      font-family: "Hahmlet"; 
+      font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+      color: white;
+      
+    }
+    h3{font-family: "space grotesk";
+     font-size: clamp(1rem, 2vw, 2rem);
+      color: white;
+      font-weight: 200;
+    }
+    
+    
+    
+    
+    
+  
+  </style>
+  
+  </head>
+  <body>
+    
+ <div class="sky">
+
+        <!-- We are making divisions, every div.
+        represent a single roundabout balls -->
+        <div class="star"></div>
+       
+       
+       
+    </div>
+    
+<h1>Hi! Did you Read Today?</h1>
+    
+<div class="top-card">
+  
+    
 <h2>
   How many minutes did you spend reading?
   </h2>
 <input type="text" id="minutes" placeholder="enter minutes">
 <button onclick="getMinutes()">Log Reading</button>
 
-  <h2>Today's reading: <span id="today">0 mins</span></h2>
-<h2>This week's reading: <span id="week">0 mins</span></h2>
-<h2>Your streak: <span id="streak">0 days</span></h2>
-
+  <h3>Today's reading: <span id="today">0 mins</span></h2>
+<h3>This week's reading: <span id="week">0 mins</span></h2>
+<h3>Your streak: <span id="streak">0 days</span></h2>
+  
+  </div>
+    
+    <h3>
+      
+      Enter a quote
+    </h3>
+    
+    <input type="text" id="minutes" placeholder="enter quote">
+    <button onclick="getQuote()">
+      Log Quote
+    </button>
+ </body>
   
   <script>
+function getMinutes() {
+
+  const mins = parseInt(
+    document.getElementById("minutes").value
+  );
+
+  if (isNaN(mins) || mins <= 0) {
+    return alert("Enter a valid number");
+  }
+
+  const log =
+    JSON.parse(localStorage.getItem("readingLog")) || {};
+
   const today = new Date().toDateString();
-   const input = document.getElementById("minutes");
-  const value = input.value;
-    localStorage.setItem("key", JSON.stringify(data)); // save
-const data = JSON.parse(localStorage.getItem("key"))
-document.getElementById("some-id").textContent = "new text";
-  
-    function getMinutes(){
-      const mins= parseInt(document.getElementByID("minutes").value);
-      if isNaN(mins) || mins <=0 return alert("enter a valid number");
-       const log = JSON.parse(localStorage.getItem("readingLog")) || {};
-       const today = new Date().toDateString();
+
   log[today] = (log[today] || 0) + mins;
-      localStorage.setItem("readingLog", JSON.stringify(log));
-      updateDisplay(log);  
-    }
-    
-    function updateDisplay (){
-      const today= new Date().toDateString();
-      const todayMins = log[today] || 0;
-      let weektotal= 0;
-      for (let i=0; i<7; i++){
-        const day= new Date();
-        day.setDate=day.getDate()-i
-        weektotal= weektotal + log[day.toDateString()] || 0;
-        
-      }
-      
-      let streak=0;
-      let checking= new Date();
-      while (log[checking.toDateString()]){
-        streak= streak + 1; 
-       checking.setDate(checking.getDate() - 1);
-      }
-       document.getElementById("today").textContent = todayMins + " mins";
-  document.getElementById("week").textContent = weekTotal + " mins";
-  document.getElementById("streak").textContent = streak + " days 🔥";
-    }
-    const savedLog = JSON.parse(localStorage.getItem("readingLog")) || {};
+
+  localStorage.setItem(
+    "readingLog",
+    JSON.stringify(log)
+  );
+
+  updateDisplay(log);
+}
+
+function updateDisplay(log) {
+
+  const today = new Date().toDateString();
+
+  const todayMins = log[today] || 0;
+
+  let weekTotal = 0;
+
+  for (let i = 0; i < 7; i++) {
+
+    const day = new Date();
+
+    day.setDate(day.getDate() - i);
+
+    weekTotal += log[day.toDateString()] || 0;
+  }
+
+  let streak = 0;
+
+  let checking = new Date();
+
+  while (log[checking.toDateString()]) {
+
+    streak++;
+
+    checking.setDate(
+      checking.getDate() - 1
+    );
+  }
+
+  document.getElementById("today").textContent =
+    todayMins + " mins";
+
+  document.getElementById("week").textContent =
+    weekTotal + " mins";
+
+  document.getElementById("streak").textContent =
+    streak + " days 🔥";
+}
+
+const savedLog =
+  JSON.parse(localStorage.getItem("readingLog")) || {};
+
 updateDisplay(savedLog);
-  </script>
+</script>
 </html>
